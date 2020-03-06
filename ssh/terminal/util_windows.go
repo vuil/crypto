@@ -94,7 +94,7 @@ func ReadPassword(fd int) ([]byte, error) {
 	defer windows.SetConsoleMode(windows.Handle(fd), old)
 
 	var h windows.Handle
-	if err := windows.DuplicateHandle(windows.GetCurrentProcess(), windows.Handle(fd), windows.GetCurrentProcess(), &h, 0, false, windows.DUPLICATE_SAME_ACCESS); err != nil {
+	if err := windows.DuplicateHandle(windows.CurrentProcess(), windows.Handle(fd), windows.CurrentProcess(), &h, 0, false, windows.DUPLICATE_SAME_ACCESS); err != nil {
 		return nil, err
 	}
 
